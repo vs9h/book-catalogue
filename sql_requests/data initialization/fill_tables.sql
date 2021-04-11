@@ -19,7 +19,6 @@ insert into language(code, name) values
     (18,'urdu');
 
 insert into directory(p_name,name) values
-
     (null,'art'),
     ('art', 'handbook'),
     ('handbook', 'computer handbook'),
