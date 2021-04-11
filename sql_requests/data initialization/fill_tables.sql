@@ -19,11 +19,12 @@ insert into language(code, name) values
     (18,'urdu');
 
 insert into directory(p_name,name) values
-    (null, 'handbook'),
+
+    (null,'art'),
+    ('art', 'handbook'),
     ('handbook', 'computer handbook'),
     ('computer handbook', 'programming'),
     ('handbook', 'household handbook'),
-    (null,'art'),
     ('art', 'detective'),
     ('art', 'fantasy'),
     ('fantasy','heroic fantasy'),
@@ -75,7 +76,7 @@ insert into author_book (a_i, b_i) values
     (3, '978-5-17-102581-9');
 
 insert into directory_book(d_n, b_i) values
-    ('fantasy', '978-5-9922-1030-9'),
+    ('programming', '978-5-9922-1030-9'),
     ('heroic fantasy', '978-5-9922-1030-9'),
     ('fantasy', '0-552-55273-9'),
     ('novel', '978-0-140-2816-20'),
