@@ -20,4 +20,4 @@ Use psql client:
    
 6) Create triggers: ``t_1.sql, t_2.sql``
  
-You can also find examples of sql database queries in ``sql_requests/sql_queries.sql``
+You can also find examples of sql database queries in ``database/sql_queries.sql``
