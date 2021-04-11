@@ -81,97 +81,234 @@ select add_book(1,'978-57897987-90',null,'poetry','Альфа-книга',2007,'
 
 -- 2 Task
 
---    call rm_cycles_from_dirs(); -- данные не изменялись.
+--  Сначала на начальных данных:
+    call rm_cycles_from_dirs();
+--    NOTICE:  [cat = programming]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = programming
+--    NOTICE:  (1) prev_cat = programming, cur_cat = computer handbook
+--    NOTICE:  (0) prev_cat = programming, cur_cat = computer handbook
+--    NOTICE:  (1) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = poetry]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = poetry
+--    NOTICE:  (1) prev_cat = poetry, cur_cat = art
+--    NOTICE:  (0) prev_cat = poetry, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Pets]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Pets
+--    NOTICE:  (1) prev_cat = Pets, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Pets, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = novel]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = novel
+--    NOTICE:  (1) prev_cat = novel, cur_cat = art
+--    NOTICE:  (0) prev_cat = novel, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Housekeeping]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Housekeeping
+--    NOTICE:  (1) prev_cat = Housekeeping, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Housekeeping, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = household handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = household handbook
+--    NOTICE:  (1) prev_cat = household handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = household handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = home, hobby]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = Hobbies and crafts]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Hobbies and crafts
+--    NOTICE:  (1) prev_cat = Hobbies and crafts, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Hobbies and crafts, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = historical genre]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = historical genre
+--    NOTICE:  (1) prev_cat = historical genre, cur_cat = art
+--    NOTICE:  (0) prev_cat = historical genre, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = heroic fantasy]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = heroic fantasy
+--    NOTICE:  (1) prev_cat = heroic fantasy, cur_cat = fantasy
+--    NOTICE:  (0) prev_cat = heroic fantasy, cur_cat = fantasy
+--    NOTICE:  (1) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (0) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Garden]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Garden
+--    NOTICE:  (1) prev_cat = Garden, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Garden, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = fantasy]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = fantasy
+--    NOTICE:  (1) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (0) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Entertainment]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Entertainment
+--    NOTICE:  (1) prev_cat = Entertainment, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Entertainment, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = Do it yourself]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Do it yourself
+--    NOTICE:  (1) prev_cat = Do it yourself, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Do it yourself, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = detective]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = detective
+--    NOTICE:  (1) prev_cat = detective, cur_cat = art
+--    NOTICE:  (0) prev_cat = detective, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Cooking]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Cooking
+--    NOTICE:  (1) prev_cat = Cooking, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Cooking, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = computer handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = computer handbook
+--    NOTICE:  (1) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Cars and traffic rules]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Cars and traffic rules
+--    NOTICE:  (1) prev_cat = Cars and traffic rules, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Cars and traffic rules, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = art]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--
 
---    NOTICE:  cat = programming
---    NOTICE:  prev_cat = <NULL>, cur_cat = programming
---    NOTICE:  prev_cat = programming, cur_cat = computer handbook
---    NOTICE:  prev_cat = computer handbook, cur_cat = handbook
---    NOTICE:  prev_cat = handbook, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = poetry
---    NOTICE:  prev_cat = <NULL>, cur_cat = poetry
---    NOTICE:  prev_cat = poetry, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Pets
---    NOTICE:  prev_cat = <NULL>, cur_cat = Pets
---    NOTICE:  prev_cat = Pets, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = novel
---    NOTICE:  prev_cat = <NULL>, cur_cat = novel
---    NOTICE:  prev_cat = novel, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Housekeeping
---    NOTICE:  prev_cat = <NULL>, cur_cat = Housekeeping
---    NOTICE:  prev_cat = Housekeeping, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = household handbook
---    NOTICE:  prev_cat = <NULL>, cur_cat = household handbook
---    NOTICE:  prev_cat = household handbook, cur_cat = handbook
---    NOTICE:  prev_cat = handbook, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = home, hobby
---    NOTICE:  prev_cat = <NULL>, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = Hobbies and crafts
---    NOTICE:  prev_cat = <NULL>, cur_cat = Hobbies and crafts
---    NOTICE:  prev_cat = Hobbies and crafts, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = historical genre
---    NOTICE:  prev_cat = <NULL>, cur_cat = historical genre
---    NOTICE:  prev_cat = historical genre, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = heroic fantasy
---    NOTICE:  prev_cat = <NULL>, cur_cat = heroic fantasy
---    NOTICE:  prev_cat = heroic fantasy, cur_cat = fantasy
---    NOTICE:  prev_cat = fantasy, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = handbook
---    NOTICE:  prev_cat = <NULL>, cur_cat = handbook
---    NOTICE:  prev_cat = handbook, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Garden
---    NOTICE:  prev_cat = <NULL>, cur_cat = Garden
---    NOTICE:  prev_cat = Garden, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = fantasy
---    NOTICE:  prev_cat = <NULL>, cur_cat = fantasy
---    NOTICE:  prev_cat = fantasy, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Entertainment
---    NOTICE:  prev_cat = <NULL>, cur_cat = Entertainment
---    NOTICE:  prev_cat = Entertainment, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = Do it yourself
---    NOTICE:  prev_cat = <NULL>, cur_cat = Do it yourself
---    NOTICE:  prev_cat = Do it yourself, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = detective
---    NOTICE:  prev_cat = <NULL>, cur_cat = detective
---    NOTICE:  prev_cat = detective, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Cooking
---    NOTICE:  prev_cat = <NULL>, cur_cat = Cooking
---    NOTICE:  prev_cat = Cooking, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = computer handbook
---    NOTICE:  prev_cat = <NULL>, cur_cat = computer handbook
---    NOTICE:  prev_cat = computer handbook, cur_cat = handbook
---    NOTICE:  prev_cat = handbook, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    NOTICE:  cat = Cars and traffic rules
---    NOTICE:  prev_cat = <NULL>, cur_cat = Cars and traffic rules
---    NOTICE:  prev_cat = Cars and traffic rules, cur_cat = home, hobby
---    NOTICE:  prev_cat = home, hobby, cur_cat = <NULL>
---    NOTICE:  cat = art
---    NOTICE:  prev_cat = <NULL>, cur_cat = art
---    NOTICE:  prev_cat = art, cur_cat = <NULL>
---    CALL
 
 --    Изменим данные:
-update directory set p_name = 'handbook'  where directory.name = 'art';
---    Получили цикл a->b->a
+    update directory set p_name = 'handbook'  where directory.name = 'art';
+--    Получили цикл a->b->a ('handbook'->'art'->'handbook')
 
+    call rm_cycles_from_dirs();
+--    NOTICE:  [cat = programming]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = programming
+--    NOTICE:  (1) prev_cat = programming, cur_cat = computer handbook
+--    NOTICE:  (0) prev_cat = programming, cur_cat = computer handbook
+--    NOTICE:  (1) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = handbook
+--    NOTICE:  Цикл найден, удаляем для art
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = poetry]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = poetry
+--    NOTICE:  (1) prev_cat = poetry, cur_cat = art
+--    NOTICE:  (0) prev_cat = poetry, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Pets]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Pets
+--    NOTICE:  (1) prev_cat = Pets, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Pets, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = novel]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = novel
+--    NOTICE:  (1) prev_cat = novel, cur_cat = art
+--    NOTICE:  (0) prev_cat = novel, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Housekeeping]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Housekeeping
+--    NOTICE:  (1) prev_cat = Housekeeping, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Housekeeping, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = household handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = household handbook
+--    NOTICE:  (1) prev_cat = household handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = household handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = home, hobby]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = Hobbies and crafts]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Hobbies and crafts
+--    NOTICE:  (1) prev_cat = Hobbies and crafts, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Hobbies and crafts, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = historical genre]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = historical genre
+--    NOTICE:  (1) prev_cat = historical genre, cur_cat = art
+--    NOTICE:  (0) prev_cat = historical genre, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = heroic fantasy]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = heroic fantasy
+--    NOTICE:  (1) prev_cat = heroic fantasy, cur_cat = fantasy
+--    NOTICE:  (0) prev_cat = heroic fantasy, cur_cat = fantasy
+--    NOTICE:  (1) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (0) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Garden]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Garden
+--    NOTICE:  (1) prev_cat = Garden, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Garden, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = fantasy]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = fantasy
+--    NOTICE:  (1) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (0) prev_cat = fantasy, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Entertainment]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Entertainment
+--    NOTICE:  (1) prev_cat = Entertainment, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Entertainment, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = Do it yourself]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Do it yourself
+--    NOTICE:  (1) prev_cat = Do it yourself, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Do it yourself, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = detective]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = detective
+--    NOTICE:  (1) prev_cat = detective, cur_cat = art
+--    NOTICE:  (0) prev_cat = detective, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Cooking]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Cooking
+--    NOTICE:  (1) prev_cat = Cooking, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Cooking, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = computer handbook]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = computer handbook
+--    NOTICE:  (1) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (0) prev_cat = computer handbook, cur_cat = handbook
+--    NOTICE:  (1) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (0) prev_cat = handbook, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    NOTICE:  [cat = Cars and traffic rules]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = Cars and traffic rules
+--    NOTICE:  (1) prev_cat = Cars and traffic rules, cur_cat = home, hobby
+--    NOTICE:  (0) prev_cat = Cars and traffic rules, cur_cat = home, hobby
+--    NOTICE:  (1) prev_cat = home, hobby, cur_cat = <NULL>
+--    NOTICE:  [cat = art]
+--    NOTICE:  (0) prev_cat = <NULL>, cur_cat = art
+--    NOTICE:  (1) prev_cat = art, cur_cat = <NULL>
+--    CALL
 
 -- 3 Task
 
