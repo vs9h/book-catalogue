@@ -1,1 +1,3 @@
 database/data_init/full_reload.sql
+.idea
+server/node_modules/

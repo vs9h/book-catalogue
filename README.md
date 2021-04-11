@@ -1,8 +1,10 @@
-### **Database for a book catalog using Postgres**.
+### **Database for a book catalog**
+
+In this project, Postgres selected as the DBMS.
 
 ### **Getting started:**
 
-Use psql client:
+Use psql client (manually):
 
 1) Create database 'catalogue';
 2) Open terminal window, and type:
@@ -21,3 +23,13 @@ Use psql client:
 6) Create triggers: ``t_1.sql, t_2.sql``
  
 You can also find examples of sql database queries in ``database/sql_queries.sql``
+
+### **Server side for a book catalog (in developing)**
+
+The server side of the application will be written with using Node.js, GraphQL and Sequelize.
+
+Other libraries used in the project can be found in ``server/package.json``.
+
+### **Client side for a book catalog (in developing)**
+
+The client side of the application will be written with using TypeScript, React.js, GraphQL and MobX.
