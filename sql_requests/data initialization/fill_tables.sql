@@ -66,12 +66,13 @@ insert into book(isbn, name, year, edition, volume, l_code, orig_isbn, type, ann
 
 insert into author_book (a_i, b_i) values
     (1, '978-5-9922-1030-9'),
+    (2, '978-5-9922-1030-9'),
     (2, '0-552-55273-9'),
     (2, '978-5-6999-4925-0'),
     (3, '978-0-140-2816-20'),
     (3, '978-5-389-06635-9'),
     (3, '978-0-140-1863-90'),
-    (3, '978-5-17-102580-9');
+    (3, '978-5-17-102580-9'),
     (3, '978-5-17-102581-9');
 
 insert into directory_book(d_n, b_i) values

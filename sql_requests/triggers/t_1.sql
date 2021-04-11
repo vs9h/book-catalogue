@@ -103,6 +103,4 @@ begin
 END;
 $cat_delete$ LANGUAGE plpgsql;
 
-CREATE TRIGGER cat_delete
-Before DELETE ON directory
-    FOR EACH ROW EXECUTE PROCEDURE process_cat_delete();
+CREATE TRIGGER cat_delete before DELETE ON directory for EACH ROW EXECUTE PROCEDURE process_cat_delete();
