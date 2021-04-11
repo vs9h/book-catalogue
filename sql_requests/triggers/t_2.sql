@@ -61,10 +61,3 @@ end;
 $book_add$ LANGUAGE plpgsql;
 
 create TRIGGER book_insert_a after insert on book for each row execute procedure process_book_insert_a();
-
-insert into book(isbn, name, year, edition, volume, l_code, orig_isbn, type, annotation) values
-    ('1337','Назв. книги',null,'Назв. издания',null,7,null, 'printed book', 'Аннотация...');
-insert into book(isbn, name, year, edition, volume, l_code, orig_isbn, type, annotation) values
-    ('1444','Назв. книги2',null,'Назв. издания2',null,7,'978-5-9922-1030-9', 'printed book', null);
-
-delete from book where isbn='1444';

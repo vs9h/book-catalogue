@@ -15,7 +15,6 @@
 --     _o -- означает "оригинальное"
 --     Пример использования функций есть в файле "call_functions.sql"
 
---  Todo: Наверное в будущем можно будет передавать массив genres.
 create or replace function add_book(
     l_code int, isbn varchar(24), volume integer, genre varchar(24),
     edition varchar(20), year integer, annotation varchar(400),
