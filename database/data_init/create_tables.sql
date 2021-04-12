@@ -1,8 +1,8 @@
 
 create table language(
     code integer not null unique,
-    name varchar(20) not null,
-    primary key(code, name)
+    name varchar(20) not null unique,
+    primary key(code) --, name)
 );
 -- code - код языка
 -- name - названия языка
