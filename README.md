@@ -26,10 +26,10 @@ You can also find examples of sql database queries in ``database/sql_queries.sql
 
 ### **Server side for a book catalog (in developing)**
 
-The server side of the application will be written with using Node.js, GraphQL and Sequelize.
+The server side of the application will be written using Node.js, GraphQL and Sequelize
 
 Other libraries used in the project can be found in ``server/package.json``.
 
 ### **Client side for a book catalog (in developing)**
 
-The client side of the application will be written with using TypeScript, React.js, GraphQL and MobX.
+The client side of the application will be written using TypeScript, React.js, GraphQL and MobX.
