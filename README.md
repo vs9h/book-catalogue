@@ -37,9 +37,9 @@ Use psql client (manually):
 You can also find examples of sql database queries in ``database/sql_queries.sql``
 ****
 
-## **Server side for a book catalog (in developing)**
+## **Server side for a book catalog**
 
-The server side of the application will be written using Node.js, GraphQL and Sequelize
+The server side of the application is written using Node.js, GraphQL and Sequelize.
 
 Other libraries used in the project can be found in ``server/package.json``.
 
@@ -52,8 +52,6 @@ Use yarn (package manager):
 - Edit .env and apply your db connectivity settings;
 - ``yarn dev`` to start the API server;
 - GraphQL Playground now at ``http://localhost:5000/api``; (you can change PORT in .env)
-
-Note: At the moment the server can only process 4 simple requests: book(isbn), allBooks(limit), author(id), allAuthors(limit).
 
 ****
 
