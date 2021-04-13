@@ -1,4 +1,4 @@
-const {Sequelize, Model, DataTypes} = require('sequelize')
+const { Sequelize, Model, DataTypes } = require('sequelize')
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -21,14 +21,11 @@ language.init({
     code: {
         type: DataTypes.INTEGER,
         primaryKey:true,
-        unique:true,
-        allowNull:false
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique:true,
-        //primaryKey:true
     }
 }, {
     // Other model options go here
@@ -67,10 +64,6 @@ book.init({
         type: DataTypes.INTEGER,
         allowNull: true
     },
-    // l_code: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
     orig_isbn: {
         type: DataTypes.STRING,
         allowNull: true
@@ -91,7 +84,6 @@ book.init({
     updatedAt: false,
 });
 
-//.belongsTo(language);
 language.hasOne(book, {
     foreignKey: {
         allowNull: false,
@@ -99,12 +91,9 @@ language.hasOne(book, {
     }
 })
 
-
-
 class author extends Model {}
 
 author.init({
-    // Model attributes are defined here
     id: {
         type: DataTypes.STRING,
         primaryKey: true
@@ -118,9 +107,8 @@ author.init({
         allowNull: false,
     }
 }, {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName:'author', // We need to choose the model name
+    sequelize,
+    modelName:'author',
     createdAt: false,
     updatedAt: false,
 });
@@ -131,19 +119,13 @@ book.belongsToMany(author, { through: 'author_book', foreignKey: 'b_i' });
 class directory extends Model {}
 
 directory.init({
-    // Model attributes are defined here
     name: {
         type: DataTypes.STRING,
         primaryKey: true
     },
-    // p_name: {
-    //     type: DataTypes.STRING,
-    //     allowNull: true
-    // }
 }, {
-    // Other model options go here
-    sequelize, // We need to pass the connection instance
-    modelName:'directory', // We need to choose the model name
+    sequelize,
+    modelName:'directory',
     createdAt: false,
     updatedAt: false,
 });
@@ -152,7 +134,6 @@ directory.hasOne(directory, {
     foreignKey: {
         allowNull: true,
         name: 'p_name',
-
     }
 })
 

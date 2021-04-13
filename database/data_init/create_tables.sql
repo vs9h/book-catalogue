@@ -34,8 +34,8 @@ create view book_v as
 
 create table author(
 	id varchar(20) primary key,
-	surname char(16) not null,
-	firstname char(16) not null
+	surname varchar(16) not null,
+	firstname varchar(16) not null
 );
 
 -- Связь "author-book"

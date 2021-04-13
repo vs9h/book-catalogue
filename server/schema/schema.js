@@ -1,8 +1,6 @@
-
-const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt} = require('graphql');
+const { GraphQLNonNull, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt} = require('graphql');
 const sequelize = require('../db')
 const graphql = require('graphql')
-const {GraphQLNonNull} = require("graphql");
 
 const BookType = new GraphQLObjectType({
     name: 'book',
@@ -61,7 +59,55 @@ const BookType = new GraphQLObjectType({
                 resolve(book) {
                     return book.type;
                 }
-            }
+            },
+            authors: {
+                type: GraphQLList(AuthorType),
+                resolve(parent) {
+                    return sequelize.models.author.findAll({
+                        include: [{
+                            model: sequelize.models.book,
+                            where: { isbn: parent.isbn },
+                        }]
+                    })
+                },
+            },
+        }
+    }
+})
+
+const AuthorType = new GraphQLObjectType({
+    name: 'author',
+    fields: () => {
+        return {
+            id: {
+                type: GraphQLNonNull(GraphQLString),
+                resolve(author) {
+                    return author.id;
+                }
+            },
+            surname: {
+                type: GraphQLNonNull(GraphQLString),
+                resolve(author) {
+                    return author.surname;
+                }
+            },
+            firstname: {
+                type: GraphQLNonNull(GraphQLString),
+                resolve(author) {
+                    return author.firstname;
+                }
+            },
+            books: {
+                type: GraphQLList(BookType),
+                resolve(parent) {
+                    return sequelize.models.book.findAll({
+                        include: [{
+                            model: sequelize.models.author,
+                            where: { id: parent.id },
+                        }]
+                    })
+                },
+        },
         }
     }
 })
@@ -69,20 +115,44 @@ const BookType = new GraphQLObjectType({
 const QueryRoot = new graphql.GraphQLObjectType({
     name: 'Query',
     fields: () => ({
-        hello: {
-            type: graphql.GraphQLString,
-            resolve: () => "Hello world!"
-        },
         book: {
-            type: new GraphQLList(BookType),
+            type: BookType,
             args: {
                 isbn: {
                     type: GraphQLString
                 }
             },
-            //validations can go here
             resolve(root, args) {
-               return sequelize.models.book.findAll({ where: args })
+               return sequelize.models.book.findByPk(args.isbn)
+            }
+        },
+        allBooks: {
+            type: GraphQLList(BookType),
+            args: {
+                limit: {type: GraphQLInt, defaultValue: 16 }
+            },
+            resolve(root, args) {
+                return sequelize.models.book.findAll({limit: args.limit });
+            }
+        },
+        author: {
+            type: AuthorType,
+            args: {
+                id: {
+                    type: GraphQLString,
+                },
+            },
+            resolve(root, args) {
+               return sequelize.models.author.findByPk(args.id)
+            }
+        },
+        allAuthors: {
+            type: GraphQLList(AuthorType),
+            args: {
+                limit: {type: GraphQLInt, defaultValue: 16 }
+            },
+            resolve(root, args) {
+                return sequelize.models.author.findAll({limit: args.limit });
             }
         }
     })
