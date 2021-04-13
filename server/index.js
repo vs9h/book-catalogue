@@ -79,8 +79,8 @@ const app = new Koa().use(
 )
 
 //const app = express();
-//app.use(cors());
-//app.use(fileUpload({}));
+app.use(cors());
+app.use(fileUpload({}));
 
 new ApolloServer({
     // Disable the built in file upload implementation that uses an outdated
