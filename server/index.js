@@ -1,6 +1,4 @@
 require('dotenv').config();
-//const express = require('express')
-//const { graphqlHTTP } = require('express-graphql')
 
 const { createWriteStream, unlink } = require('fs');
 const { ApolloServer } = require('apollo-server-koa');
@@ -79,8 +77,6 @@ const app = new Koa().use(
 )
 
 //const app = express();
-app.use(cors());
-app.use(fileUpload({}));
 
 new ApolloServer({
     // Disable the built in file upload implementation that uses an outdated
@@ -100,6 +96,9 @@ new ApolloServer({
 //     );
 // });
 
+
+app.use(fileUpload({}));
+app.use(cors());
 
 const start = async () => {
     try{

@@ -1,4 +1,4 @@
-const { GraphQLNonNull, GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt} = require('graphql');
+const { GraphQLNonNull, GraphQLObjectType, GraphQLInputObjectType, GraphQLList, GraphQLString, GraphQLInt} = require('graphql');
 const sequelize = require('../db')
 const { QueryTypes } = require('sequelize');
 
@@ -141,4 +141,17 @@ const AuthorType = new GraphQLObjectType({
     }
 })
 
-module.exports = {AuthorType, BookType, DirectoryType};
+const AuthorInputType = new GraphQLInputObjectType({
+    name: 'authorInput',
+    fields: () => ({
+            surname: {
+                type: GraphQLNonNull(GraphQLString),
+            },
+            firstname: {
+                type: GraphQLNonNull(GraphQLString),
+            },
+        }
+    )
+})
+
+module.exports = {AuthorType, BookType, DirectoryType, AuthorInputType};
