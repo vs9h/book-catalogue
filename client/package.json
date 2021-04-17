@@ -1,0 +1,81 @@
+{
+  "name": "game1",
+  "version": "1.22.10",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.3.9",
+    "@skbkontur/react-icons": "4.3.1",
+    "@skbkontur/react-ui": "2.13.0",
+    "@testing-library/jest-dom": "^5.11.5",
+    "@testing-library/react": "^11.1.1",
+    "@testing-library/user-event": "^12.2.0",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.6",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/shortid": "^0.0.29",
+    "ahooks": "^2.8.1",
+    "apollo": "^2.32.5",
+    "apollo-boost": "^0.4.9",
+    "apollo-codegen": "^0.20.2",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-airbnb-typescript-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "7.22.0",
+    "get-graphql-schema": "^2.1.2",
+    "graphql": "^15.5.0",
+    "graphql-codegen": "^0.4.0",
+    "graphql-config": "^3.2.0",
+    "graphql-request": "^3.3.0",
+    "graphql-tag": "^2.11.0",
+    "http-proxy-middleware": "^1.0.6",
+    "jsx": "^0.9.89",
+    "less": "^3.12.2",
+    "mobx": "^5.15.7",
+    "mobx-react-lite": "2.2.2",
+    "nodejs": "^0.0.0",
+    "prop-types": "^15.7.2",
+    "react": "17.0.1",
+    "react-apollo": "3.1.5",
+    "react-dom": "17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.4",
+    "shortid": "2.2.15",
+    "source-map": "^0.7.3",
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "fix": "yarn eslint --ext .tsx,.ts src/ --fix --no-ignore",
+    "tsc": "yarn tsc",
+    "apollo:generate": "apollo codegen:generate --target typescript --excludes=node_modules/* --includes=**/*.tsx --endpoint http://localhost:5000/graphql --tagName=gql --outputFlat src/generated"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "4.6.2-alpha.1",
+    "@typescript-eslint/parser": "4.15.0",
+    "eslint-import-resolver-typescript": "2.3.0"
+  },
+  "main": "index.js",
+  "author": "vs9h <zr9ihi@gmail.com>",
+  "license": "MIT"
+}

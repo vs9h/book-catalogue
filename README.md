@@ -51,10 +51,18 @@ Use yarn (package manager):
 - ``yarn`` to install all dependencies;
 - Edit .env and apply your db connectivity settings;
 - ``yarn dev`` to start the API server;
-- GraphQL Playground now at ``http://localhost:5000/api``; (you can change PORT in .env)
+- GraphQL Playground now at ``http://localhost:5000/graphql``; (you can change PORT in .env)
 
 ****
 
-## **Client side for a book catalog (is planned)**
+## **Client side for a book catalog (in process)**
 
-The client side of the application will be written using TypeScript, React.js, GraphQL and MobX.
+The client side of the application is written using TypeScript, React.js, GraphQL, Apollo.
+
+### **Getting started:**
+
+- ``cd client``
+- ``yarn`` to install all dependencies (see ``package.json``);
+- ``yarn apollo:generate`` to create type defs for Apollo;
+- ``yarn start`` to start web-app (PORT ``http://localhost:3000/``;
+
