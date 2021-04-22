@@ -1,6 +1,7 @@
 const { GraphQLNonNull, GraphQLObjectType, GraphQLInputObjectType, GraphQLList, GraphQLString, GraphQLInt} = require('graphql');
 const sequelize = require('../db')
 const { QueryTypes } = require('sequelize');
+const FileType = require('./FileType');
 
 const DirectoryType = new GraphQLObjectType({
     name: 'directory',
@@ -100,6 +101,23 @@ const BookType = new GraphQLObjectType({
                     )
                 },
             },
+            image: {
+                type: FileType,
+                resolve(book ,args,{db}) {
+                    return db.get('uploads')
+                        .find({ id: book.image_id })
+                        .value();
+                },
+            }
+            // image: {
+            //     type: FileType,
+            //     resolve(parent){
+            //         console.log("how are you");
+            //         // return db.get('uploads')
+            //         //     .find({ id: book.image_id })
+            //         //     .value();
+            //     }
+            // }
         }
     }
 })

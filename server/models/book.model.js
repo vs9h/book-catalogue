@@ -41,6 +41,10 @@ module.exports = (sequelize) => {
         type: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        image_id: {
+            type: DataTypes.STRING,
+            allowNull: true,
         }
     }, {
         // Other model options go here

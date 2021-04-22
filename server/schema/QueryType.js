@@ -8,6 +8,28 @@ const { QueryTypes } = require('sequelize')
 module.exports = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
+        image: {
+            type: FileType,
+            args: {
+                id:{
+                    type: GraphQLNonNull(GraphQLString)
+                }
+            },
+            resolve(root, args, {db}){
+                return db.get('uploads')
+                    .find({ id: args.id })
+                    .value();
+                // for (var i = 0; i < db.get('uploads').length; i++){
+                //     // look for the entry with a matching `code` value
+                //     if (db.get('uploads')[i].code == needle){
+                //         // we found it
+                //         // obj[i].name is the matched result
+                //     }
+                // }
+                //const file = { id:"id",filename: "filename", mimetype:"mimetype",path: "path" };
+                //return file;
+            }
+        },
         book: {
             type: BookType,
             args: {

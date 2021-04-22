@@ -11,7 +11,16 @@ interface ICreateCollectionModal{
 }
 export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClose }) => {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [ISBN, setISBN] = useState("");
+  const [year, setYear] = useState<number>(2021);
+  const [edition, setEdition] = useState("");
+  const [volume, setVolume] = useState<number>(1);
+  const [language, setLanguage] = useState("russian");
+  const [original, setOriginal] = useState("");
+  const [annotation, setAnnotation] = useState("");
+  const [type, setType] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [surname, setSurname] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
   // const { user } = useContext(UserContext);
   // const QUERY_CREATE_COLLECTION = gql`
@@ -24,11 +33,11 @@ export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClos
   //   }
   // `;
   // const [createCollection] = useMutation(QUERY_CREATE_COLLECTION);
-  // const onSubmit = () => {
+  const onSubmit = () => {
   //   //const promise = createCollection({ variables: { userID: user.userID, title, description } });
   //   //promise.then(refetch);
   //   onClose();
-  // };
+  };
   useEffect(() => {
     setIsDisabled(!(title.length > 4));
   }, [title]);
@@ -47,21 +56,31 @@ export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClos
             onValueChange={(value) => (setTitle(value))}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
-                // onSubmit();
+                onSubmit();
               }
             }}
             type="text"
             width="290px"
           />
           <Input
-            placeholder="Description"
+            placeholder="ISBN"
             width="290px"
             onKeyPress={(e) => {
               if (e.key === "Enter") {
-                // onSubmit();
+                onSubmit();
               }
             }}
-            onValueChange={(value) => (setDescription(value))}
+            onValueChange={(value) => (setISBN(value))}
+          />
+          <Input
+            placeholder="year"
+            width="290px"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onSubmit();
+              }
+            }}
+            onValueChange={(value) => (setISBN(value))}
           />
         </div>
       </Modal.Body>
@@ -70,7 +89,7 @@ export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClos
           <Button
             disabled={isDisabled}
             onClick={() => {
-              // onSubmit();
+              onSubmit();
             }}
           >
             ADD

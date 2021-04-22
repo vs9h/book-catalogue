@@ -1,10 +1,58 @@
 {
   "uploads": [
     {
-      "id": "242",
-      "path": "uploads/",
-      "filename": "pop-cat-1",
-      "mimetype": "jpg"
+      "id": "XbVBONHR7",
+      "filename": "cover.png",
+      "mimetype": "image/png",
+      "path": "../server/uploads/XbVBONHR7-cover.png"
+    },
+    {
+      "id": "QTpUAsJHj",
+      "filename": "boocover.jpg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/QTpUAsJHj-boocover.jpg"
+    },
+    {
+      "id": "8sFep8mA_",
+      "filename": "boocover (1).jpg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/8sFep8mA_-boocover (1).jpg"
+    },
+    {
+      "id": "YtlmK7xYc",
+      "filename": "boocover (2).jpg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/YtlmK7xYc-boocover (2).jpg"
+    },
+    {
+      "id": "tgpA1mvpT",
+      "filename": "images.png",
+      "mimetype": "image/png",
+      "path": "../server/uploads/tgpA1mvpT-images.png"
+    },
+    {
+      "id": "3F0ro__Ep",
+      "filename": "grapes.jpg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/3F0ro__Ep-grapes.jpg"
+    },
+    {
+      "id": "zyJxschul",
+      "filename": "Dzhon_Stejnbek__Grozdya_gneva.jpeg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/zyJxschul-Dzhon_Stejnbek__Grozdya_gneva.jpeg"
+    },
+    {
+      "id": "m8XR815aZ",
+      "filename": "download (1).jpeg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/m8XR815aZ-download (1).jpeg"
+    },
+    {
+      "id": "tX3b-Zzsr",
+      "filename": "592c214f384e1f7b9b299c0c.jpg",
+      "mimetype": "image/jpeg",
+      "path": "../server/uploads/tX3b-Zzsr-592c214f384e1f7b9b299c0c.jpg"
     }
   ]
 }

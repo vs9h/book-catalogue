@@ -16,7 +16,8 @@ create table book(
     l_code integer references language(code) not null,
     orig_isbn varchar(24) references book(isbn),
     annotation varchar(400),
-    type varchar(24) not null
+    type varchar(24) not null,
+    image_id varchar(50)
 );
 -- name - название книги
 -- year - год издания

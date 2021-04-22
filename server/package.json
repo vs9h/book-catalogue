@@ -6,7 +6,13 @@
   "scripts": {
     "dev": "nodemon index.js"
   },
-  "nodemonConfig": { "ext": "js", "ignore": ["db.json"], "delay": 2 },
+  "nodemonConfig": {
+    "ext": "js",
+    "ignore": [
+      "db.json"
+    ],
+    "delay": 2
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -21,6 +27,7 @@
     "graphql": "^15.5.0",
     "graphql-upload": "^11.0.0",
     "koa": "^2.13.1",
+    "koa-static": "^5.0.0",
     "lowdb": "^1.0.0",
     "mkdirp": "^1.0.4",
     "pg": "^8.5.1",

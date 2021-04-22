@@ -26,6 +26,10 @@ export const GET_All_BOOKS = gql`
   type
   categories
   edition
+  image{
+      id
+      filename
+    }
   }
 }
 `;
@@ -46,14 +50,12 @@ export const BookListPage = observer(() => {
         <Route exact path="/catalogue">
           <div className="catalogueMain">
             <div style={{ display: "flex", flexFlow: "row nowrap", alignItems: "center" }}>
-              <div style={{ display: "flex", flexFlow: "row nowrap", alignItems: "center" }}>
-                <div className="logo">
-                  Books in library
-                </div>
-                <CreateBookCardItem refetch={refetch} />
+              <div className="logo">
+                Books in library
               </div>
-              {/* <CreateCollectionCardItem refetch={refetch} /> */}
+              <CreateBookCardItem refetch={refetch} />
             </div>
+            {/* <CreateCollectionCardItem refetch={refetch} /> */}
             <div className="main-inner">
               { loading ? <Loading /> : data && data.allBooks && data.allBooks.map(
                 (book) => {

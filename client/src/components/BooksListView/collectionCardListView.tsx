@@ -41,7 +41,11 @@ export const BookCardItem:React.FC<{book: GetAllBooks_allBooks}> = ({ book }) =>
         {" "}
         year
       </div>
-      <img src="https://contentcdn.lingualeo.com/uploads/glossary/ru/1545067333/85.png" alt="Обложка книги" />
+      {
+            (book.image)
+              ? <img src={`http://localhost:5000/${book.image.id}-${book.image.filename}`} alt="Обложка книги" />
+              : <img src="http://localhost:5000/tgpA1mvpT-images.png" alt="Обложка книги" />
+}
     </div>
   </Link>
 );

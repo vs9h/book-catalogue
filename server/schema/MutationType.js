@@ -202,7 +202,7 @@ module.exports = new GraphQLObjectType({
                     type: GraphQLNonNull(GraphQLUpload),
                 },
             },
-            resolve: (parent, { file }, { storeUpload }) => storeUpload(file),
+            resolve: (parent, { file }, { storeUpload }) => {console.log("uploading new img"); return storeUpload(file) },
     }
 })
 })

@@ -3,13 +3,16 @@ require('dotenv').config();
 const { createWriteStream, unlink } = require('fs');
 const { ApolloServer } = require('apollo-server-koa');
 const { graphqlUploadKoa } = require('graphql-upload');
-const Koa = require('koa');
+const koa = require('koa');
 const lowdb = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const mkdirp = require('mkdirp');
 const shortid = require('shortid');
 const schema = require('./schema/schema');
-const sequelize = require('./db.js')
+const sequelize = require('./db.js');
+const path = require("path");
+const express = require("express");
+const serve = require('koa-static');
 
 const UPLOAD_DIR = '../server/uploads';
 const db = lowdb(new FileSync('db.json'));
@@ -65,7 +68,8 @@ async function storeUpload(upload) {
     return file;
 }
 
-const app = new Koa().use(
+const app = new koa();
+app.use(
     graphqlUploadKoa({
         // Limits here should be stricter than config for surrounding
         // infrastructure such as Nginx so errors can be handled elegantly by
@@ -74,11 +78,14 @@ const app = new Koa().use(
         maxFileSize: 10000000, // 10 MB
         maxFiles: 20,
     })
-)
+);
 
-//const app = express();
+app.use(serve(path.join(__dirname, "uploads")));
+//app.use('/images', express.static(__dirname + 'uploads'));
+//const app_up = express();
+//app_up.use("/images", express.static(path.join(__dirname, "uploads")));
 
-new ApolloServer({
+const server = new ApolloServer({
     // Disable the built in file upload implementation that uses an outdated
     // `graphql-upload` version, see:
     // https://github.com/apollographql/apollo-server/issues/3508#issuecomment-662371289
@@ -86,34 +93,21 @@ new ApolloServer({
     schema,
     playground: true,
     context: { db, storeUpload },
-}).applyMiddleware({ app });
+}).applyMiddleware({
+    app: app,
+    cors: cors(({ credentials: true, origin: `http://localhost:${PORT}` }))
+});
 
-// app.listen(PORT, (error) => {
-//     if (error) throw error;
-//
-//     console.info(
-//         `Serving http://localhost:${PORT} for ${process.env.NODE_ENV}.`
-//     );
-// });
-
-
-app.use(fileUpload({}));
-app.use(cors());
 
 const start = async () => {
     try{
         await sequelize.authenticate();
         await sequelize.sync();
-        //app.use('/api', graphqlHTTP({
-        //    schema: schema,
-        //    graphiql: true,
-        //}));
         app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
-
+        console.log(path.join(__dirname, "uploads"));
     }
     catch (e) {
         console.log(e);
     }
 }
-
 start();
