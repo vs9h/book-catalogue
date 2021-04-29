@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button, Input, Modal,
 } from "@skbkontur/react-ui";
-import { useMutation } from "@apollo/client";
-import gql from "graphql-tag";
+// import { useMutation } from "@apollo/client";
+// import gql from "graphql-tag";
 
 interface ICreateCollectionModal{
     onClose():void;
@@ -11,16 +11,16 @@ interface ICreateCollectionModal{
 }
 export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClose }) => {
   const [title, setTitle] = useState("");
-  const [ISBN, setISBN] = useState("");
-  const [year, setYear] = useState<number>(2021);
-  const [edition, setEdition] = useState("");
-  const [volume, setVolume] = useState<number>(1);
-  const [language, setLanguage] = useState("russian");
-  const [original, setOriginal] = useState("");
-  const [annotation, setAnnotation] = useState("");
-  const [type, setType] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [surname, setSurname] = useState("");
+  // const [ISBN, setISBN] = useState("");
+  // const [year, setYear] = useState<number>(2021);
+  // const [edition, setEdition] = useState("");
+  // const [volume, setVolume] = useState<number>(1);
+  // const [language, setLanguage] = useState("russian");
+  // const [original, setOriginal] = useState("");
+  // const [annotation, setAnnotation] = useState("");
+  // const [type, setType] = useState("");
+  // const [firstname, setFirstname] = useState("");
+  // const [surname, setSurname] = useState("");
   const [isDisabled, setIsDisabled] = useState(true);
   // const { user } = useContext(UserContext);
   // const QUERY_CREATE_COLLECTION = gql`
@@ -70,7 +70,6 @@ export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClos
                 onSubmit();
               }
             }}
-            onValueChange={(value) => (setISBN(value))}
           />
           <Input
             placeholder="year"
@@ -80,7 +79,6 @@ export const CreateCollectionModal:React.FC<ICreateCollectionModal> = (({ onClos
                 onSubmit();
               }
             }}
-            onValueChange={(value) => (setISBN(value))}
           />
         </div>
       </Modal.Body>

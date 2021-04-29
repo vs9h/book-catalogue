@@ -4,7 +4,7 @@ import {
   TopBar,
 } from "@skbkontur/react-ui";
 import {
-  DocumentFolder, Education, Bookmark,
+  Bookmark,
 } from "@skbkontur/react-icons";
 import { Link } from "react-router-dom";
 

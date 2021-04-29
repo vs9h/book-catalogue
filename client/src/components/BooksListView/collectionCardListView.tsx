@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Add } from "@skbkontur/react-icons";
 import { CreateCollectionModal } from "./CreateCollectionModal";
 import { GetAllBooks_allBooks } from "../../generated/GetAllBooks";
+import { Loading } from "../Utils/Loading";
 
 // Выводит все карточки
 export const CollectionCardList:React.FC<{books:any, refetch(): void}> = observer(
@@ -36,16 +37,27 @@ export const BookCardItem:React.FC<{book: GetAllBooks_allBooks}> = ({ book }) =>
       >
         <div className="card-title">{book.name}</div>
       </div>
-      <div className="card-subtitle">
-        {book.year}
-        {" "}
-        year
+      { (book.image)
+        ? <img src={`http://localhost:5000/${book.image.id}-${book.image.filename}`} alt="Обложка книги" />
+        : <img src="http://localhost:5000/tgpA1mvpT-images.png" alt="Обложка книги" />}
+      <div style={{
+        display: "flex", justifyContent: "space-around", flexDirection: "column", alignItems: "center", height: "100%",
+      }}
+      >
+        <div className="card-subtitle">
+          { (book.authors) ? book.authors!.map((author) => (
+            <div>
+              {author!.surname}
+              {" "}
+              {author!.firstname}
+            </div>
+          )) : <Loading />}
+        </div>
+        <div className="card-main">
+          {book.annotation?.substr(0, 95)}
+          ...
+        </div>
       </div>
-      {
-            (book.image)
-              ? <img src={`http://localhost:5000/${book.image.id}-${book.image.filename}`} alt="Обложка книги" />
-              : <img src="http://localhost:5000/tgpA1mvpT-images.png" alt="Обложка книги" />
-}
     </div>
   </Link>
 );

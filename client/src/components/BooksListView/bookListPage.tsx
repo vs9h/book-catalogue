@@ -5,9 +5,9 @@ import { Route, Switch } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 import { Error } from "../Utils/Error";
-import { CollectionPage } from "./collectionListView";
+import { BookPage } from "./collectionListView";
 import { GetAllBooks } from "../../generated/GetAllBooks";
-import { BookCardItem, CollectionCardList, CreateBookCardItem } from "./collectionCardListView";
+import { BookCardItem, CreateBookCardItem } from "./collectionCardListView";
 import { Loading } from "../Utils/Loading";
 
 export const GET_All_BOOKS = gql`
@@ -55,26 +55,16 @@ export const BookListPage = observer(() => {
               </div>
               <CreateBookCardItem refetch={refetch} />
             </div>
-            {/* <CreateCollectionCardItem refetch={refetch} /> */}
             <div className="main-inner">
               { loading ? <Loading /> : data && data.allBooks && data.allBooks.map(
-                (book) => {
-                  if (book) {
-                    return <BookCardItem key={book.isbn} book={book} />;
-                  }
-                },
+                (book) => <BookCardItem key={book!.isbn} book={book!} />,
               ) }
             </div>
           </div>
-          {/* <div className="catalogueMain"> */}
-          {/*  <div> */}
-          {/*    { data && <CollectionCardList books={data.allBooks!} refetch={() => refetch()} />} */}
-          {/*  </div> */}
-          {/* </div> */}
         </Route>
-        <Route path="/catalogue/book/:id">
-          <div className="catalogueMain">
-            <CollectionPage />
+        <Route path="/catalogue/book/:isbn">
+          <div>
+            <BookPage />
           </div>
         </Route>
       </Switch>

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
   Button, Input, Modal,
 } from "@skbkontur/react-ui";
-import { useMutation } from "@apollo/client";
-import gql from "graphql-tag";
+// import { useMutation } from "@apollo/client";
+// import gql from "graphql-tag";
 
 interface IAddWordModal{
     onClose():void;

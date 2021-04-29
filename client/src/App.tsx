@@ -7,7 +7,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { Header } from "./components/StaticTopbar/header";
 import { BookListPage } from "./components/BooksListView/bookListPage";
 import { Upload } from "./components/upload/Upload";
-import { FileList } from "./components/upload/FileList";
+// import { FileList } from "./components/upload/FileList";
 
 const client = new ApolloClient({
   // @ts-ignore
@@ -28,7 +28,7 @@ export const Content = () => (
       <div className="intro_inner">
         <Switch>
           <Route path="/catalogue">
-            <Upload />
+            {/* <Upload /> */}
             {/* <FileList /> */}
             <BookListPage />
           </Route>
