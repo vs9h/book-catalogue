@@ -1,10 +1,10 @@
 const { DataTypes, Model } = require('sequelize');
 
 module.exports = (sequelize) => {
+
     class book extends Model {}
 
-    book.init({
-        // Model attributes are defined here
+    book.init({// Model attributes
         isbn: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -47,10 +47,11 @@ module.exports = (sequelize) => {
             allowNull: true,
         }
     }, {
-        // Other model options go here
-        sequelize:sequelize, // We need to pass the connection instance
-        modelName:'book', // We need to choose the model name
+        sequelize: sequelize, // We need to pass the connection instance
+        modelName: 'book', // We need to choose the model name
         createdAt: false,
         updatedAt: false,
     });
+
+
 };

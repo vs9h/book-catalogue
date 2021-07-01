@@ -1,5 +1,8 @@
 function applyExtraSetup(sequelize) {
-    const { language, book, author, directory } = sequelize.models;
+
+   const { book, author, directory } = sequelize.models;
+   
+   const { language } = sequelize.models;
    language.hasOne(book, {
         foreignKey: {
             allowNull: false,

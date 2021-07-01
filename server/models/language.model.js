@@ -21,7 +21,6 @@ module.exports = (sequelize) => {
     class language extends Model {}
 
     language.init({
-        // Model attributes are defined here
         code: {
             type: DataTypes.INTEGER,
             primaryKey:true,
@@ -32,10 +31,10 @@ module.exports = (sequelize) => {
             unique:true,
         }
     }, {
-        // Other model options go here
-        sequelize:sequelize, // We need to pass the connection instance
-        modelName:'language', // We need to choose the model name
+        sequelize:sequelize,
+        modelName:'language',
         createdAt: false,
         updatedAt: false,
     });
 };
+

@@ -71,40 +71,28 @@ async function storeUpload(upload) {
 const app = new koa();
 app.use(
     graphqlUploadKoa({
-        // Limits here should be stricter than config for surrounding
-        // infrastructure such as Nginx so errors can be handled elegantly by
-        // `graphql-upload`:
-        // https://github.com/jaydenseric/graphql-upload#type-processrequestoptions
         maxFileSize: 10000000, // 10 MB
         maxFiles: 20,
     })
 );
 
 app.use(serve(path.join(__dirname, "uploads")));
-//app.use('/images', express.static(__dirname + 'uploads'));
-//const app_up = express();
-//app_up.use("/images", express.static(path.join(__dirname, "uploads")));
 
-const server = new ApolloServer({
-    // Disable the built in file upload implementation that uses an outdated
-    // `graphql-upload` version, see:
-    // https://github.com/apollographql/apollo-server/issues/3508#issuecomment-662371289
-    uploads: false,
-    schema,
-    playground: true,
-    context: { db, storeUpload },
-}).applyMiddleware({
-    app: app,
-    cors: cors(({ credentials: true, origin: `http://localhost:${PORT}` }))
-});
-
+    const server = new ApolloServer({
+        uploads: false,
+        schema,
+        playground: true,
+        context: { db, storeUpload },
+    }).applyMiddleware({
+        app: app,
+        cors: cors(({ credentials: true, origin: `http://localhost:${PORT}` }))
+    });
 
 const start = async () => {
-    try{
-        await sequelize.authenticate();
+    try {
         await sequelize.sync();
-        app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
-        console.log(path.join(__dirname, "uploads"));
+        app.listen(PORT, () =>
+            console.log(`Server started on PORT ${PORT}`));
     }
     catch (e) {
         console.log(e);

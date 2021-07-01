@@ -28,74 +28,47 @@ const BookType = new GraphQLObjectType({
     fields: () => {
         return {
             isbn: {
-                type: GraphQLNonNull(GraphQLString),
-                resolve(book) {
-                    return book.isbn;
-                }
+                type: GraphQLNonNull(GraphQLString)
             },
             name: {
                 type: GraphQLNonNull(GraphQLString),
-                resolve(book) {
-                    return book.name;
-                }
             },
             year: {
                 type: GraphQLNonNull(GraphQLInt),
-                resolve(book) {
-                    return book.year;
-                }
             },
             edition: {
                 type: GraphQLNonNull(GraphQLString),
-                resolve(book) {
-                    return book.edition;
-                }
             },
             volume: {
                 type: GraphQLInt,
-                resolve(book) {
-                    return book.volume;
-                }
             },
             l_code: {
                 type: GraphQLNonNull(GraphQLInt),
-                resolve(book) {
-                    return book.l_code;
-                }
             },
             orig_isbn: {
                 type: GraphQLString,
-                resolve(book) {
-                    return book.orig_isbn;
-                }
             },
             annotation: {
                 type: GraphQLString,
-                resolve(book) {
-                    return book.annotation;
-                }
             },
             type: {
                 type: GraphQLNonNull(GraphQLString),
-                resolve(book) {
-                    return book.type;
-                }
             },
             authors: {
                 type: GraphQLList(AuthorType),
-                resolve(parent) {
+                resolve(book) {
                     return sequelize.models.author.findAll({
                         include: [{
                             model: sequelize.models.book,
-                            where: { isbn: parent.isbn },
+                            where: { isbn: book.isbn },
                         }]
                     })
                 },
             },
             categories: {
                 type: GraphQLList(GraphQLString),
-                resolve(parent) {
-                    return sequelize.query(`select all_category('${parent.isbn}') as name;`,
+                resolve(book) {
+                    return sequelize.query(`select all_category('${book.isbn}') as name;`,
                         { type: QueryTypes.SELECT, raw:true, attributes: ['name']  }).then(
                             categories => categories.map(categories => categories.name)
                     )
@@ -109,55 +82,36 @@ const BookType = new GraphQLObjectType({
                         .value();
                 },
             }
-            // image: {
-            //     type: FileType,
-            //     resolve(parent){
-            //         console.log("how are you");
-            //         // return db.get('uploads')
-            //         //     .find({ id: book.image_id })
-            //         //     .value();
-            //     }
-            // }
         }
     }
 })
 
-const AuthorType = new GraphQLObjectType({
-    name: 'author',
-    fields: () => {
-        return {
-            id: {
-                type: GraphQLNonNull(GraphQLString),
-                resolve(author) {
-                    return author.id;
-                }
-            },
-            surname: {
-                type: GraphQLNonNull(GraphQLString),
-                resolve(author) {
-                    return author.surname;
-                }
-            },
-            firstname: {
-                type: GraphQLNonNull(GraphQLString),
-                resolve(author) {
-                    return author.firstname;
-                }
-            },
-            books: {
-                type: GraphQLList(BookType),
-                resolve(parent) {
-                    return sequelize.models.book.findAll({
-                        include: [{
-                            model: sequelize.models.author,
-                            where: { id: parent.id },
-                        }]
-                    })
+    const AuthorType = new GraphQLObjectType({
+        name: 'author',
+        fields: () => {
+            return {
+                id: { type: GraphQLNonNull(GraphQLString) },
+                surname: { type: GraphQLNonNull(GraphQLString) },
+                firstname: { type: GraphQLNonNull(GraphQLString) },
+                books: {
+                    type: GraphQLList(BookType),
+                    resolve(author) {
+                        // sequelize.models.book.findAll({
+                        //     include: [{
+                        //         model: sequelize.models.author,
+                        //     }]
+                        // }).then(value => console.log(value));
+                        return sequelize.models.book.findAll({
+                            include: [{
+                                model: sequelize.models.author,
+                                where: { id: author.id },
+                            }]
+                        })
+                    },
                 },
-            },
+            }
         }
-    }
-})
+    })
 
 const AuthorInputType = new GraphQLInputObjectType({
     name: 'authorInput',

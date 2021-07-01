@@ -8,6 +8,17 @@ const { QueryTypes } = require('sequelize')
 module.exports = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
+        author: {
+            type: AuthorType,
+            args: {
+                id: {
+                    type: GraphQLString,
+                },
+            },
+            resolve(root, args) {
+                return sequelize.models.author.findByPk(args.id)
+            }
+        },
         image: {
             type: FileType,
             args: {
@@ -68,7 +79,6 @@ module.exports = new GraphQLObjectType({
                             where: { surname: args.surname },
                         }]
                     });
-                    //return sequelize.models.book.findAll({limit: args.limit, where: { surname:args.surname, firstname:args.firstname} });
                 if (args.firstname)
                     return sequelize.models.book.findAll({
                         limit: args.limit,
@@ -77,19 +87,6 @@ module.exports = new GraphQLObjectType({
                             where: { firstname: args.firstname },
                         }]
                     });
-                    // sequelize.models.book.findAll({limit: args.limit, where: { firstname:args.firstname}  });
-                //return sequelize.models.book.findAll({limit: args.limit, where: {surname:args.surname} });
-            }
-        },
-        author: {
-            type: AuthorType,
-            args: {
-                id: {
-                    type: GraphQLString,
-                },
-            },
-            resolve(root, args) {
-                return sequelize.models.author.findByPk(args.id)
             }
         },
         allAuthors: {
@@ -110,7 +107,7 @@ module.exports = new GraphQLObjectType({
             type: GraphQLList(GraphQLString),
                 resolve() {
                     return sequelize.query("select name from directory",
-                        { type: QueryTypes.SELECT, raw:true, attributes: ['name']  }).then(
+                        { type: QueryTypes.SELECT, raw:true, attributes: ['name'] }).then(
                         categories => categories.map(categories => categories.name)
                     )
             },

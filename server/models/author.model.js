@@ -1,6 +1,8 @@
 const { DataTypes, Model } = require('sequelize');
 
 module.exports = (sequelize) => {
+
+
     class author extends Model {}
 
     author.init({
@@ -17,9 +19,12 @@ module.exports = (sequelize) => {
             allowNull: false,
         }
     }, {
-        sequelize:sequelize,
+        sequelize: sequelize,
         modelName:'author',
         createdAt: false,
         updatedAt: false,
     });
+
+
 };
+
